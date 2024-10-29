@@ -18,6 +18,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+          cache: false
       - run: go install "github.com/client9/misspell/cmd/misspell@latest"
       - run: misspell -i importas ./
 
@@ -31,6 +32,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+          cache: false
       - run: go install "golang.org/x/vuln/cmd/govulncheck@latest"
       - run: govulncheck ./...
 
@@ -44,5 +46,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+          cache: false
       - run: go install "github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
       - run: golangci-lint run ./...
