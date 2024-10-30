@@ -27,7 +27,7 @@ jobs:
           cache: false
       - run: make test
 
-  qemu:
+  linux-qemu:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
