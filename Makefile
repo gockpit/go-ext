@@ -9,6 +9,6 @@ test:
 
 .PHONY: test-bin
 test-bin:
+	rm -rf ./bin
 	mkdir -p ./bin/
-	rm -rf ./bin/*
 	go test -v -cover -covermode=atomic -c -o ./bin/ ./... 
