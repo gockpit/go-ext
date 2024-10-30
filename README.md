@@ -1,4 +1,4 @@
-# [Go](https://github.com/golang/go) Extension Packages
+# [Gockpit](https://github.com/gockpit): [Go](https://github.com/golang/go) Extension Packages
 
 This package provides extension APIs of [Go](https://github.com/golang/go).
 
