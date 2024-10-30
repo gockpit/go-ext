@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	eerrors "github.com/gockpit/goext/errors"
+	eerrors "github.com/gockpit/go-ext/errors"
 )
 
 func TestError(t *testing.T) {

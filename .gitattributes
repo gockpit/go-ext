@@ -5,5 +5,5 @@
 go.sum linguist-generated=true
 
 # Exclude from language percentage.
-/.* linguist-documentation
+/* linguist-documentation
 /docs/* linguist-documentation
