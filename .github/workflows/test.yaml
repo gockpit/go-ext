@@ -9,14 +9,20 @@ on:
 
 jobs:
   runner:
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       matrix:
         os:
-          - ubuntu
-          - windows
-          - macos
+          - ubuntu-20.04
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - windows-2019
+          - windows-2022
+          - macos-12
+          - macos-13
+          - macos-14
+          - macos-15
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
@@ -56,44 +62,6 @@ jobs:
           sudo add-apt-repository -y ppa:canonical-server/server-backports
           sudo apt -y update
           sudo apt -y install qemu-user
-      - name: build
-        run: GOARCH=${{ matrix.arch.go }} make test-bin
-      - name: test
-        run: |
-          for target in ./bin/*; do
-            echo "===== RUNNING TEST: ${target} ====="
-            qemu-${{ matrix.arch.qemu }} ${target}
-          done
-
-  windows-qemu:
-    runs-on: windows-latest
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        arch:
-          # - { go: "386", qemu: "i386" }
-          - { go: "amd64", qemu: "x86_64" }
-          - { go: "arm", qemu: "arm" }
-          # - { go: "arm64", qemu: "aarch64" }
-          # - { go: "mips", qemu: "mips" }
-          # - { go: "mips64", qemu: "mips64" }
-          # - { go: "mips64le", qemu: "mips64el" }
-          # - { go: "mipsle", qemu: "mipsel" }
-          # - { go: "ppc64", qemu: "ppc64" }
-          # - { go: "ppc64le", qemu: "ppc64le" }
-          # - { go: "riscv64", qemu: "riscv64" }
-          # - { go: "s390x", qemu: "s390x" }
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: go.mod
-          cache: false
-      - uses: msys2/setup-msys2@v2
-      - run: |
-          pacman --noconfirm -Su
-          pacman --noconfirm -S mingw-w64-ucrt-x86_64-qemu
       - name: build
         run: GOARCH=${{ matrix.arch.go }} make test-bin
       - name: test
