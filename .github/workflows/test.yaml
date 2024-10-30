@@ -90,9 +90,10 @@ jobs:
         with:
           go-version-file: go.mod
           cache: false
+      - uses: msys2/setup-msys2@v2
       - run: |
-          pacman -Su
-          pacman -S mingw-w64-ucrt-x86_64-qemu
+          pacman --noconfirm -Su
+          pacman --noconfirm -S mingw-w64-ucrt-x86_64-qemu
       - name: build
         run: GOARCH=${{ matrix.arch.go }} make test-bin
       - name: test
