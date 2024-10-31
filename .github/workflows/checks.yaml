@@ -8,12 +8,20 @@ on:
     branches: ["**"]
 
 jobs:
-  spellcheck:
+  dependency:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - run: |
+          chmod +x ./.github/check-dependency.sh
+          ./.github/check-dependency.sh
+
+  spell:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
@@ -26,7 +34,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
@@ -39,7 +46,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: go.mod

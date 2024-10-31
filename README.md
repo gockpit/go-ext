@@ -4,6 +4,10 @@ This package provides extension APIs of [Go](https://github.com/golang/go).
 
 Package structure follows [go/src/](https://github.com/golang/go/tree/master/src).
 
+## Notable packages
+
+- TODO: write
+
 ## Naming Convention
 
 When importing packages, use `e` prefix which means `extension`.
